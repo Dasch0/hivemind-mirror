@@ -1,0 +1,9 @@
+[submodule "vendor/bevy_ecs_tilemap"]
+	path = vendor/bevy_ecs_tilemap
+	url = https://github.com/AlecGoncharow/bevy_ecs_tilemap.git
+[submodule "vendor/bevy_hanabi"]
+	path = vendor/bevy_hanabi
+	url = git@github.com:djeedai/bevy_hanabi.git
+[submodule "vendor/bevy-console"]
+	path = vendor/bevy-console
+	url = git@github.com:RichoDemus/bevy-console.git

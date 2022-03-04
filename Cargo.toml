@@ -1,0 +1,18 @@
+[package]
+name = "bevy-experiments"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.6.1"# using dynamic dylib during development
+float-ord = "0.3.2" # avoid float insanity
+bevy_ecs_tilemap = { path = "vendor/bevy_ecs_tilemap"}
+bitflags = "1.3"
+rand = {version = "0.8.5", features = ["small_rng"]}
+noise = "0.7.0"
+bevy_prototype_debug_lines = { git = "https://github.com/Toqozz/bevy_debug_lines", branch = "master"}
+bevy_console = "0.30.0"
+bevy_egui = "0.11.1"
+nanoserde = "0.1.29"

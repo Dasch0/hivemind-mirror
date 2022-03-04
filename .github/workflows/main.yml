@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  # update with the name of the main binary
+  binary: bevy_github_ci_template
+
+
+jobs:
+
+  # Build for macOS
+  release-macos:
+    runs-on: macOS-latest
+
+    steps:
+      - uses: little-core-labs/get-git-tag@v3.0.1
+        id: get_version
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          target: x86_64-apple-darwin
+          override: true
+      - name: Environment Setup
+        run: |
+          export CFLAGS="-fno-stack-check"
+          export MACOSX_DEPLOYMENT_TARGET="10.9"
+      - name: Build
+        run: |
+          cargo build --release --target x86_64-apple-darwin
+      - name: Prepare Package
+        run: |
+          mkdir -p ${{ env.binary }}.app/Contents/MacOS
+          cp target/x86_64-apple-darwin/release/${{ env.binary }} ${{ env.binary }}.app/Contents/MacOS/
+          cp -r assets ${{ env.binary }}.app/Contents/MacOS/
+          hdiutil create -fs HFS+ -volname "${{ env.binary }}" -srcfolder ${{ env.binary }}.app ${{ env.binary }}.dmg
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.binary }}.dmg
+          asset_name: ${{ env.binary }}-macos-${{ steps.get_version.outputs.tag }}.dmg
+          tag: ${{ github.ref }}
+          overwrite: true

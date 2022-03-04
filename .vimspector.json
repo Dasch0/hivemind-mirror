@@ -1,0 +1,23 @@
+{
+  "configurations": {
+    "Launch": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [ "cpp", "c", "objc", "rust" ], // optional
+      "configuration": {
+        "request": "launch",
+        "program": "target/debug/bevy-experiments",
+        "externalConsole": true,
+        "MIMode": "lldb"
+      }
+    },
+    "Attach": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [ "cpp", "c", "objc", "rust" ], // optional
+      "configuration": {
+        "request": "attach",
+        "program": "target/debug/bevy-experiments",
+        "MIMode": "lldb"
+      }
+    }
+  }
+}
