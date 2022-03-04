@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 bevy = "0.6.1"# using dynamic dylib during development
 float-ord = "0.3.2" # avoid float insanity
-bevy_ecs_tilemap = { path = "vendor/bevy_ecs_tilemap"}
+bevy_ecs_tilemap = { git = "https://github.com/AlecGoncharow/bevy_ecs_tilemap.git", branch = "main"}
 bitflags = "1.3"
 rand = {version = "0.8.5", features = ["small_rng"]}
 noise = "0.7.0"
