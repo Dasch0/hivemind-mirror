@@ -29,6 +29,8 @@ jobs:
         run: |
           export CFLAGS="-fno-stack-check"
           export MACOSX_DEPLOYMENT_TARGET="10.9"
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
       - name: Build
         run: |
           cargo build --release --target x86_64-apple-darwin
